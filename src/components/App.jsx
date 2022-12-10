@@ -12,15 +12,16 @@ export class App extends Component {
   };
 
   render() {
-    return;
-    <section>
-      <div>
-        <h1>Phonebook</h1>
-      </div>
-      <div>
-        <h2>Contacts</h2>
-        <ContactList />
-      </div>
-    </section>;
+    return (
+      <section>
+        <div>
+          <h1>Phonebook</h1>
+        </div>
+        <div>
+          <h2>Contacts</h2>
+          <ContactList />
+        </div>
+      </section>
+    );
   }
 }
