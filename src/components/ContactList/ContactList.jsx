@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
+import Contact from '../Contact/Contact';
 import css from './ContactList.module.css';
-import Contact from 'components/Contact/Contact';
 
 function ContactList({ contacts }) {
   return (
