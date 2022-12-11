@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import css from './Contact.module.css';
 
-function Contact({ contact: { name } }) {
+function Contact({ contact: { name, number } }) {
   return (
     <>
-      <p>{name}</p>
+      <p>
+        {name}: {number}
+      </p>
     </>
   );
 }
