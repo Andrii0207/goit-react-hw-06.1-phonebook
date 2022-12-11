@@ -1,8 +1,8 @@
 import { nanoid } from 'nanoid';
 import { Component } from 'react';
-import { findAllInRenderedTree } from 'react-dom/test-utils';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -12,6 +12,22 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
+    filter: '',
+  };
+
+  filterInputHandler = event => {
+    const { value } = event.currentTarget;
+
+    this.setState({ filter: value });
+  };
+
+  filterContacts = () => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact => {
+      return contact.name.toLowerCase().includes(normalizedFilter);
+    });
   };
 
   addContact = ({ name, number }) => {
@@ -21,12 +37,15 @@ export class App extends Component {
       number,
     };
 
-    this.setState(prevState => ({
-      contacts: [newContact, ...prevState.contacts],
+    this.setState(({ contacts }) => ({
+      contacts: [newContact, ...contacts],
     }));
   };
 
   render() {
+    const { contacts, filter } = this.state;
+    const filteredList = this.filterContacts();
+
     return (
       <section>
         <div>
@@ -35,7 +54,8 @@ export class App extends Component {
         </div>
         <div>
           <h2>Contacts</h2>
-          <ContactList contacts={this.state.contacts} />
+          <Filter value={filter} onChange={this.filterInputHandler} />
+          <ContactList contacts={filteredList} />
         </div>
       </section>
     );
