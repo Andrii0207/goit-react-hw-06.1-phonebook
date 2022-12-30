@@ -23,18 +23,21 @@ const ContactForm = ({ onSubmit }) => {
     }
   };
 
-  const resetForm = () => {
-    setName('');
-    setNumber('');
-  };
-
   const handleSubmit = evt => {
     evt.preventDefault();
 
     const { name, number } = evt.target;
 
-    onSubmit(name.value, number.value);
+    console.log(name.value);
+    console.log(number.value);
+
+    onSubmit(name, number);
     resetForm();
+  };
+
+  const resetForm = () => {
+    setName('');
+    setNumber('');
   };
 
   return (
