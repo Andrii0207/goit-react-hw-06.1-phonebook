@@ -9,12 +9,14 @@ const ContactForm = ({ onSubmit }) => {
   const contactId = nanoid();
 
   const handleChange = evt => {
-    const { value } = evt.target;
+    // evt.preventDefault();
+    const { name, value } = evt.target;
 
-    switch (evt.target.name) {
+    switch (name) {
       case 'name':
         setName(value);
         break;
+
       case 'number':
         setNumber(value);
         break;
@@ -28,10 +30,7 @@ const ContactForm = ({ onSubmit }) => {
 
     const { name, number } = evt.target;
 
-    console.log(name.value);
-    console.log(number.value);
-
-    onSubmit(name, number);
+    onSubmit(name.value, number.value);
     resetForm();
   };
 

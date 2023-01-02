@@ -40,13 +40,12 @@ export function App() {
     });
   };
 
-  const addContact = ({ name, number }) => {
+  const addContact = (name, number) => {
     const newContact = {
       id: nanoid(),
       name,
       number,
     };
-
     return contacts.find(contact => newContact.name.toLowerCase() === contact.name.toLowerCase())
       ? alert(`${newContact} is already in contacts`)
       : setContacts(() => [newContact, ...contacts]);
