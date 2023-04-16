@@ -17,7 +17,6 @@ const ContactForm = () => {
 
   const handleChange = evt => {
     const { name, value } = evt.target;
-
     setState(prev => ({ ...prev, [name]: value }));
   };
 
