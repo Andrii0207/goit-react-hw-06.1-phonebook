@@ -4,14 +4,9 @@ import css from './ContactList.module.css';
 import { deleteContact } from 'redux/contactsSlice';
 
 function ContactList() {
+  const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilteredContacts);
-
-  const dispatch = useDispatch();
-
-  if (contacts) {
-    return;
-  }
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
