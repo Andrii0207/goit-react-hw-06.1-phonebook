@@ -18,7 +18,11 @@ const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer(state, action) {
-        state.items = [...state.items, action.payload];
+        state.items.find(
+          item => item.name.toLowerCase() === action.payload.name.toLowerCase()
+        )
+          ? alert(`Name ${action.payload.name} is aready in contacts`)
+          : (state.items = [...state.items, action.payload]);
       },
       prepare(name, number) {
         return {
